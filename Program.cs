@@ -1,4 +1,6 @@
 using Agenda.Data;
+using Agenda.Repositories;
+using Agenda.Repositories.Contracts;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,6 +14,10 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
+
+builder.Services.AddScoped<IAgendaRepository, AgendaRepository>();
+builder.Services.AddScoped<ICompromissoRepository, CompromissoRepository>();
+
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();

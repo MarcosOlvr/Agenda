@@ -30,9 +30,9 @@ namespace Agenda.Repositories
             return _context.Agendas.FirstOrDefault(x => x.Id == id);
         }
 
-        public List<Agendas> GetAllAgendas()
+        public List<Agendas> GetAllAgendas(string userName)
         {
-            return _context.Agendas.ToList();
+            return _context.Agendas.Where(x => x.User == userName).ToList();
         }
 
         public void UpdateAgenda(Agendas obj)

@@ -4,7 +4,7 @@ namespace Agenda.Repositories.Contracts
 {
     public interface IAgendaRepository
     {
-        List<Agendas> GetAllAgendas();
+        List<Agendas> GetAllAgendas(string userName);
         Agendas GetAgenda(int id);
         void AddAgenda(Agendas obj);
         void UpdateAgenda(Agendas obj);

@@ -19,12 +19,6 @@ namespace Agenda.Data
         {
             base.OnModelCreating(builder);
 
-            builder.Entity<Agendas>()
-                .HasOne<IdentityUser>()
-                .WithMany()
-                .HasForeignKey(t => t.UserId)
-                .OnDelete(DeleteBehavior.NoAction);
-
             builder.Entity<Compromisso>()
                 .HasOne<Agendas>()
                 .WithMany()
