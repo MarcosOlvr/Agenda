@@ -57,6 +57,8 @@ namespace Agenda.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult EditAgenda(Agendas obj)
         {
+            obj.User = User.Identity.Name;
+
             if (ModelState.IsValid)
             {
                 _agendaRepo.UpdateAgenda(obj);

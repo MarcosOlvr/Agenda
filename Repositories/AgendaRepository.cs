@@ -37,8 +37,15 @@ namespace Agenda.Repositories
 
         public void UpdateAgenda(Agendas obj)
         {
-            _context.Agendas.Update(obj);
-            _context.SaveChanges();
+            var agenda = _context.Agendas.Find(obj.Id);
+
+            if (agenda != null)
+            {
+                agenda.Name = obj.Name;
+
+                _context.Update(agenda);
+                _context.SaveChanges();
+            }
         }
     }
 }

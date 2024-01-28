@@ -5,21 +5,25 @@
 }
 
 <div class="text-center">
-
-    @if (Model.Count < 1)
-    {
-        <h1 class="display-4">Você não tem nenhuma agenda cadastrada no momento!</h1>
-    }
-    else 
-    {
-        foreach (var agenda in Model)
+    <div class="row">
+        @if (Model.Count < 1)
         {
-            <div class="m-3 border-2 border-primary">
-                <h4>@agenda.Name</h4>
-                <a class="btn btn-primary">Acessar</a>
-                <a class="btn btn-secondary">Editar</a>
-            </div>
+            <h1 class="display-4">Você não tem nenhuma agenda cadastrada no momento!</h1>
         }
-    }
-    <a class="btn btn-primary" asp-action="CreateAgenda" asp-controller="Agenda">Criar agenda</a>
+        else 
+        {
+            foreach (var agenda in Model)
+            {
+                <div class="border border-primary col-6 p-3">
+                    <h4>@agenda.Name</h4>
+                    <a class="btn btn-primary">Acessar</a>
+                    <a asp-action="EditAgenda" asp-controller="Agenda" asp-route-agendaId="@agenda.Id" class="btn btn-secondary">Editar</a>
+                    <a asp-action="DeleteAgenda" asp-controller="Agenda" asp-route-agendaId="@agenda.Id" class="btn btn-danger">Remover</a>
+                </div>
+            }
+        }
+        <div class="p-3">
+            <a class="btn btn-primary" asp-action="CreateAgenda" asp-controller="Agenda">Criar agenda</a>
+        </div>
+    </div>
 </div>
