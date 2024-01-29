@@ -25,9 +25,9 @@ namespace Agenda.Repositories
             _context.SaveChanges();
         }
 
-        public List<Compromisso> GetAllCompromissos()
+        public List<Compromisso> GetAllCompromissos(int agendaId)
         {
-            return _context.Compromissos.ToList();
+            return _context.Compromissos.Where(x => x.AgendaId == agendaId).ToList();
         }
 
         public Compromisso GetCompromisso(int id)

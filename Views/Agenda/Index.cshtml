@@ -16,7 +16,7 @@
             {
                 <div class="border border-primary col-6 p-3">
                     <h4>@agenda.Name</h4>
-                    <a class="btn btn-primary">Acessar</a>
+                    <a asp-action="Index" asp-controller="Compromisso" asp-route-agendaId="@agenda.Id" class="btn btn-primary">Acessar</a>
                     <a asp-action="EditAgenda" asp-controller="Agenda" asp-route-agendaId="@agenda.Id" class="btn btn-secondary">Editar</a>
                     <a asp-action="DeleteAgenda" asp-controller="Agenda" asp-route-agendaId="@agenda.Id" class="btn btn-danger">Remover</a>
                 </div>

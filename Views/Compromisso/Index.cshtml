@@ -1,0 +1,28 @@
+﻿@model List<Compromisso>
+
+@{
+    ViewData["Title"] = "Compromissos";
+}
+
+<div class="text-center">
+    <div class="row">
+        @if (Model.Count < 1)
+        {
+            <h1 class="display-4">Você não tem nenhum compromisso cadastrado no momento!</h1>
+        }
+        else
+        {
+            foreach (var compromisso in Model)
+            {
+                <div class="border border-primary col-6 p-3">
+                    <h4>@compromisso.Name</h4>
+                    <a asp-action="EditCompromisso" asp-controller="Compromisso" asp-route-compromissoId="@compromisso.Id" class="btn btn-secondary">Editar</a>
+                    <a asp-action="DeleteCompromisso" asp-controller="Compromisso" asp-route-compromissoId="@compromisso.Id" class="btn btn-danger">Remover</a>
+                </div>
+            }
+        }
+        <div class="p-3">
+            <a class="btn btn-primary" asp-action="CreateCompromisso" asp-controller="Compromisso" asp-route-agendaId="@TempData["agendaId"]">Criar compromisso</a>
+        </div>
+    </div>
+</div>
