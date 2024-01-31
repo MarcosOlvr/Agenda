@@ -54,6 +54,8 @@ namespace Agenda.Controllers
         {
             var compromisso = _comRepo.GetCompromisso(compromissoId);
 
+            TempData["agendaId"] = compromisso.AgendaId;
+
             if (compromisso != null)
                 return View(compromisso);
 
@@ -67,7 +69,7 @@ namespace Agenda.Controllers
             {
                 _comRepo.UpdateCompromisso(obj);
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { agendaId = TempData["agendaId"] });
             }
 
             return View(obj);
@@ -77,6 +79,8 @@ namespace Agenda.Controllers
         public IActionResult DeleteCompromisso(int compromissoId)
         {
             var compromisso = _comRepo.GetCompromisso(compromissoId);
+
+            TempData["agendaId"] = compromisso.AgendaId;
 
             if (compromisso != null)
                 return View(compromisso);
@@ -89,7 +93,7 @@ namespace Agenda.Controllers
         {
             _comRepo.DeleteCompromisso(obj.Id);
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", new { agendaId = TempData["agendaId"] });
         }
     }
 }
