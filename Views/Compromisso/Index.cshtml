@@ -9,20 +9,45 @@
         @if (Model.Count < 1)
         {
             <h1 class="display-4">Você não tem nenhum compromisso cadastrado no momento!</h1>
+
+            <div class="p-3">
+                <a class="btn btn-primary" asp-action="CreateCompromisso" asp-controller="Compromisso" asp-route-agendaId="@TempData["agendaId"]">Criar compromisso</a>
+            </div>
         }
         else
         {
-            foreach (var compromisso in Model)
-            {
-                <div class="border border-primary col-6 p-3">
-                    <h4>@compromisso.Name</h4>
-                    <a asp-action="EditCompromisso" asp-controller="Compromisso" asp-route-compromissoId="@compromisso.Id" class="btn btn-secondary">Editar</a>
-                    <a asp-action="DeleteCompromisso" asp-controller="Compromisso" asp-route-compromissoId="@compromisso.Id" class="btn btn-danger">Remover</a>
-                </div>
-            }
+            <div class="p-3 d-flex justify-content-end">
+                <a class="btn btn-primary" asp-action="CreateCompromisso" asp-controller="Compromisso" asp-route-agendaId="@TempData["agendaId"]">Criar compromisso</a>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <td>Nome</td>
+                            <td>Descrição</td>
+                            <td>Data</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var compromisso in Model)
+                        {
+                            <tr>
+                                <td>@compromisso.Name</td>
+                                <td width="50%">@compromisso.Description</td>
+                                <td>@compromisso.Date</td>
+                                <td>
+                                    <a asp-action="EditCompromisso" asp-route-compromissoId="@compromisso.Id" class="btn btn-primary">Editar</a>
+                                </td>
+                                <td>
+                                    <a asp-action="DeleteCompromisso" asp-route-compromissoId="@compromisso.Id" class="btn btn-danger">Remover</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
         }
-        <div class="p-3">
-            <a class="btn btn-primary" asp-action="CreateCompromisso" asp-controller="Compromisso" asp-route-agendaId="@TempData["agendaId"]">Criar compromisso</a>
-        </div>
     </div>
 </div>
